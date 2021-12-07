@@ -186,8 +186,7 @@ func (bus *EventBus) removeHandler(topic string, idx int) {
 func (bus *EventBus) findHandlerIdx(topic string, callback reflect.Value) int {
 	if _, ok := bus.handlers[topic]; ok {
 		for idx, handler := range bus.handlers[topic] {
-			if handler.callBack.Type() == callback.Type() &&
-				handler.callBack.Pointer() == callback.Pointer() {
+			if handler.callBack == callback {
 				return idx
 			}
 		}
